@@ -1,18 +1,29 @@
-package com.arpon007.EcommerceProject.security.jwt;
+package com.arpon007.EcommerceProject.security.response;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-public class LoginResponse {
+@Data
+@NoArgsConstructor
+public class UserInfoResponse {
+
+    private Long id;
     private String jwtToken;
 
     private String username;
     private List<String> roles;
 
-    public LoginResponse(String username, List<String> roles, String jwtToken) {
+    public UserInfoResponse(Long id, String username, List<String> roles ,String jwtToken) {
+        this.id = id;
+        this.jwtToken = jwtToken;
         this.username = username;
         this.roles = roles;
-        this.jwtToken = jwtToken;
     }
+
+
 
     public String getJwtToken() {
         return jwtToken;

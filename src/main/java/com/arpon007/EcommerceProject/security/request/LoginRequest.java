@@ -1,8 +1,12 @@
-package com.arpon007.EcommerceProject.security.jwt;
+package com.arpon007.EcommerceProject.security.request;
+
+import jakarta.validation.constraints.NotBlank;
 
 public class LoginRequest {
+    @NotBlank
     private String username;
 
+    @NotBlank
     private String password;
 
     public String getUsername() {
