@@ -24,18 +24,18 @@ public class User {
     private Long userId;
 
     @NotBlank
-    @Size(min = 2, max = 30)
+    @Size(min = 3, max = 30)
     @Column(name = "username")
     private String userName;
 
     @NotBlank
-    @Size(min = 2, max = 30)
+    @Size(max = 30)
     @Email
     @Column(name = "email")
     private String email;
 
     @NotBlank
-    @Size(min = 8, max = 130)
+    @Size(min =3, max = 40) //using 3 min 3 as pass for testing purpose
     private String password;
 
     public User(String password, String email, String userName) {
