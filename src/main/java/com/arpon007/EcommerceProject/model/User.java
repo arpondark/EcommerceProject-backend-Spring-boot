@@ -35,13 +35,13 @@ public class User {
     private String email;
 
     @NotBlank
-    @Size(min =3, max = 40) //using 3 min 3 as pass for testing purpose
+    @Size(min = 3, max = 100) //increased max length to accommodate encoded passwords
     private String password;
 
-    public User(String password, String email, String userName) {
-        this.password = password;
-        this.email = email;
+    public User(String userName,String email,String password) {
         this.userName = userName;
+        this.email = email;
+        this.password = password;
     }
 
 
