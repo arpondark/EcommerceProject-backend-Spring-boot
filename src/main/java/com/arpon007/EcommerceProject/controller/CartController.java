@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class CartController {
 
 
+    @Autowired
     private CartService cartService;
 
     @PostMapping("/carts/products/{productId}/quantity/{quantity}")

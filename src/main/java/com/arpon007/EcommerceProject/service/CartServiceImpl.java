@@ -40,7 +40,7 @@ public class CartServiceImpl implements CartService {
     public CartDTO addProductToCart(Long productId, Integer quantity) {
 
         Cart cart = createCart();
-        Product product = productRepository.findById(productId).orElse(() -> new ResourceNotFoundException("Product", "Product Id", productId));
+        Product product = productRepository.findById(productId).orElseThrow(() -> new ResourceNotFoundException("Product", "Product Id", productId));
 
         CartItem cartitem = cartItemRepository.findCartItemByProductIdAndCartId(
                 cart.getCartId(), productId
@@ -64,13 +64,13 @@ public class CartServiceImpl implements CartService {
 
 
         cartItemRepository.save(newCartItem);
-        product.setQuantity(product.getQuantity()); ///stock update
+        product.setQuantity(product.getQuantity()); // stock update
         cart.setTotalPrice(cart.getTotalPrice() + product.getSpecialPrice() * quantity);
         cartRepository.save(cart);
 
         CartDTO cartDTO = modelMapper.map(cart, CartDTO.class);
 
-        List<CartItem> cartItems = cart.getCartItems();
+        List<CartItem> cartItems = cart.getItems();
         Stream<ProductDTO> productDTOStream = cartItems.stream().map(
                 item -> {
                     ProductDTO map = modelMapper.map(item.getProduct(), ProductDTO.class);
@@ -80,7 +80,7 @@ public class CartServiceImpl implements CartService {
         cartDTO.setProducts(productDTOStream.toList());
 
 
-        return null;
+        return cartDTO;
     }
 
     private Cart createCart() {
@@ -90,7 +90,7 @@ public class CartServiceImpl implements CartService {
         }
         Cart cart = new Cart();
         cart.setTotalPrice(0.00);
-        cart.setUser(authUtil.getLoggedInUser());
+        cart.setUser(authUtil.loggedInUser());
         return cartRepository.save(cart);
     }
 
