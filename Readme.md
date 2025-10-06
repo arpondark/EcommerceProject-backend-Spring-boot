@@ -1,5 +1,23 @@
 # E-Commerce Project - API Documentation
 
+## Default Credentials
+
+For easy testing and access, use these default credentials:
+
+### Admin Account
+- **Username:** `admin`
+- **Email:** `admin@example.com`
+- **Password:** `admin123`
+- **Role:** ROLE_ADMIN
+
+### Regular User Account
+- **Username:** `user1`
+- **Email:** `user1@example.com`
+- **Password:** `user123`
+- **Role:** ROLE_USER
+
+> **Note:** These are default credentials for development/testing purposes. Make sure to change them in production environments.
+
 ## API Endpoints
 
 ### Health Check Endpoints
